@@ -93,7 +93,7 @@ function noteFreq(note){const m=note.match(/^([A-G])([b#]?)(-?\d+)$/);if(!m)retu
 function currentTuning(){return tunings[tuningChoice.value]||tunings.dKurd}
 function currentOuterNotes(){const a=currentTuning().ascending;return layoutOrder.map(i=>a[i])}
 let ctx,master,reverb,wet,ambienceBus,currentAmbient=null,ambientLoadToken=0;const warmedTunings=new Set();const bank=new Map(),voices=[],ambientBuffers=new Map();const POOL=28;const ambientFiles={beach:'ambience-beach.mp3',forest:'ambience-forest.mp3',stream:'ambience-stream.mp3',rain:'ambience-rain.mp3'};
-const outer=[],extras=[],radius=35,baseStart=90,extraRadius=20.5,extraAngles=[205,335];
+const outer=[],extras=[],radius=35,baseStart=90,extraRadius=19.2,extraAngles=[238,302];
 for(let i=0;i<9;i++){const b=document.createElement('button');b.type='button';b.className='note';b.innerHTML='<span class="zoneGuide"></span><span class="label"></span>';stage.appendChild(b);outer.push(b)}
 for(let i=0;i<2;i++){const b=document.createElement('button');b.type='button';b.className='note extra hidden';b.innerHTML='<span class="zoneGuide"></span><span class="label"></span>';stage.appendChild(b);extras.push(b)}
 function setButtonNote(b,name,ding=false){b.dataset.note=name;b.dataset.freq=noteFreq(name);const label=b.querySelector('.label');if(ding)label.innerHTML=name+'<small>Ding</small>';else label.textContent=name}

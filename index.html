@@ -18,7 +18,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .app{max-width:780px;margin:0 auto}
 .head{padding:8px 2px 8px;text-align:center}
 h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-size:12px;color:#a9a198}
-.controls{display:flex;gap:12px;flex-wrap:wrap;padding:8px 0 12px}.control{display:grid;grid-template-columns:auto minmax(110px,1fr) auto;gap:8px;align-items:center;min-width:215px;flex:1;padding:8px 10px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.16);border-radius:12px;backdrop-filter:blur(8px)}.control.toggleControl{grid-template-columns:1fr auto;min-width:215px}.toggleText{display:flex;flex-direction:column;gap:2px}.toggleText small{font-size:10px;color:#92897f}.switch{position:relative;width:46px;height:27px;display:inline-block}.switch input{opacity:0;width:0;height:0}.sliderToggle{position:absolute;inset:0;border-radius:999px;background:#4a4641;transition:.18s;border:1px solid rgba(255,255,255,.12)}.sliderToggle:before{content:"";position:absolute;width:21px;height:21px;left:2px;top:2px;border-radius:50%;background:#eee7de;box-shadow:0 1px 4px rgba(0,0,0,.5);transition:.18s}.switch input:checked+.sliderToggle{background:#9b7b55}.switch input:checked+.sliderToggle:before{transform:translateX(19px)}
+.settingsWrap{position:relative;z-index:20;display:flex;justify-content:flex-end;padding:6px 0 10px}.settings{position:relative;width:min(100%,340px)}.settings>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.24);border-radius:12px;backdrop-filter:blur(10px);font-size:14px;font-weight:600;-webkit-tap-highlight-color:transparent}.settings>summary::-webkit-details-marker{display:none}.settings>summary::after{content:"⌄";font-size:17px;line-height:1;color:#cbbba7;transition:transform .16s}.settings[open]>summary::after{transform:rotate(180deg)}.settingsPanel{position:absolute;right:0;top:calc(100% + 7px);width:min(92vw,340px);padding:9px;border:1px solid rgba(255,255,255,.10);background:rgba(20,18,16,.96);border-radius:14px;box-shadow:0 16px 34px rgba(0,0,0,.42);backdrop-filter:blur(14px)}.control{display:grid;grid-template-columns:72px minmax(110px,1fr) 42px;gap:8px;align-items:center;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06)}.control:last-child{border-bottom:0}.control.toggleControl{grid-template-columns:1fr auto}.toggleText{display:flex;flex-direction:column;gap:2px}.toggleText small{font-size:10px;color:#92897f}.switch{position:relative;width:46px;height:27px;display:inline-block}.switch input{opacity:0;width:0;height:0}.sliderToggle{position:absolute;inset:0;border-radius:999px;background:#4a4641;transition:.18s;border:1px solid rgba(255,255,255,.12)}.sliderToggle:before{content:"";position:absolute;width:21px;height:21px;left:2px;top:2px;border-radius:50%;background:#eee7de;box-shadow:0 1px 4px rgba(0,0,0,.5);transition:.18s}.switch input:checked+.sliderToggle{background:#9b7b55}.switch input:checked+.sliderToggle:before{transform:translateX(19px)}
 .control label{font-size:13px}.control output{font-size:12px;color:#bbb2a7;min-width:38px;text-align:right}input[type=range]{width:100%;accent-color:#d8c5a8}
 .stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
 .pan{position:absolute;inset:1.5%;border-radius:50%;overflow:hidden;transform-origin:50% 50%;background:
@@ -39,18 +39,23 @@ h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-
 .label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center;opacity:1;transition:opacity .15s}.hideNoteNames .label{opacity:0}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
 .zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.62);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.zoneGuide::after{content:"";position:absolute;width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(246,236,218,.72);border-radius:50% / 44%;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.note:not(.ding) .zoneGuide::after{width:43%;height:49%}
 .status{text-align:center;font-size:12px;color:#aaa197;padding:10px 0 5px;min-height:28px}.tip{text-align:center;font-size:11px;color:#716b64;padding-bottom:8px}
-@media(max-width:520px){.controls{gap:8px}.control{min-width:100%}}
+@media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 </style>
 </head>
 <body>
 <main class="app">
-<div class="head"><h1>D Kurd 10 Handpan</h1><div class="sub">Photorealistic surface · centred oval dimples · optional guidelines and note names</div></div>
-<div class="controls">
+<div class="head"><h1>D Kurd 10 Handpan</h1><div class="sub">Photorealistic surface · centred oval dimples · compact Settings menu · optional guidelines and note names</div></div>
+<div class="settingsWrap">
+<details id="settingsMenu" class="settings">
+<summary>Settings</summary>
+<div class="settingsPanel">
 <div class="control"><label for="sustain">Sustain</label><input id="sustain" type="range" min="0" max="1" step=".01" value=".68"><output id="sustainOut">68%</output></div>
 <div class="control"><label for="tone">Tone</label><input id="tone" type="range" min="0" max="1" step=".01" value=".78"><output id="toneOut">78%</output></div>
 <div class="control"><label for="rotation">Rotation</label><input id="rotation" type="range" min="-180" max="180" step="1" value="0"><output id="rotationOut">0°</output></div>
 <div class="control toggleControl"><div class="toggleText"><label for="guides">Guidelines</label><small>Show centre and shoulder zones</small></div><label class="switch"><input id="guides" type="checkbox" checked><span class="sliderToggle"></span></label></div>
 <div class="control toggleControl"><div class="toggleText"><label for="noteNames">Note Names</label><small>Show or hide note labels</small></div><label class="switch"><input id="noteNames" type="checkbox" checked><span class="sliderToggle"></span></label></div>
+</div>
+</details>
 </div>
 <div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
 <div id="status" class="status" aria-live="polite">Tap a note centre, shoulder or the shell</div><div class="tip">For best response on iPad, open in Safari and add to Home Screen.</div>
@@ -60,6 +65,8 @@ h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-
 const stage=document.getElementById('stage'),pan=document.getElementById('pan'),shell=document.getElementById('shell'),status=document.getElementById('status');
 const sustain=document.getElementById('sustain'),tone=document.getElementById('tone'),rotation=document.getElementById('rotation'),guides=document.getElementById('guides'),noteNames=document.getElementById('noteNames');
 const sustainOut=document.getElementById('sustainOut'),toneOut=document.getElementById('toneOut'),rotationOut=document.getElementById('rotationOut');
+const settingsMenu=document.getElementById('settingsMenu');
+document.addEventListener('pointerdown',e=>{if(settingsMenu.open&&!settingsMenu.contains(e.target))settingsMenu.open=false});
 const notes=[['A3',220],['Bb3',233.082],['D4',293.665],['F4',349.228],['A4',440],['C5',523.251],['G4',391.995],['E4',329.628],['C4',261.626]],outer=[],radius=35,baseStart=90;
 notes.forEach(n=>{const b=document.createElement('button');b.type='button';b.className='note';b.dataset.note=n[0];b.dataset.freq=n[1];b.innerHTML='<span class="zoneGuide"></span><span class="label">'+n[0]+'</span>';stage.appendChild(b);outer.push(b)});
 function positionNotes(){const rot=+rotation.value||0;outer.forEach((b,i)=>{const a=(baseStart+i*40+rot)*Math.PI/180;b.style.left=50+radius*Math.cos(a)+'%';b.style.top=50+radius*Math.sin(a)+'%';b.style.transform='translate(-50%,-50%)'});pan.style.transform='rotate('+rot+'deg)';rotationOut.value=Math.round(rot)+'°'}

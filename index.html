@@ -36,7 +36,7 @@ h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-
 .note::after{content:"";position:absolute;inset:0;background-image:url('metal-texture.png');background-size:cover;background-position:center;background-repeat:no-repeat;mix-blend-mode:overlay;opacity:.20;pointer-events:none}
 .note.ding{width:30%;aspect-ratio:1.06;border-radius:50% / 47%;padding:0;background:radial-gradient(ellipse at 47% 43%,rgba(204,175,139,.24),rgba(53,43,36,.4) 48%,rgba(5,5,5,.5) 100%);box-shadow:inset 0 9px 20px rgba(255,219,171,.12),inset 0 -18px 28px rgba(0,0,0,.58),0 4px 10px rgba(0,0,0,.32)}
 .note.ding::before{width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50% / 44%;background:radial-gradient(ellipse at 38% 28%,#d0b08a 0 5%,#9a7b5d 18%,#564335 52%,#1c1714 100%)}
-.label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
+.label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center;opacity:1;transition:opacity .15s}.hideNoteNames .label{opacity:0}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
 .zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.62);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.zoneGuide::after{content:"";position:absolute;width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(246,236,218,.72);border-radius:50% / 44%;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.note:not(.ding) .zoneGuide::after{width:43%;height:49%}
 .status{text-align:center;font-size:12px;color:#aaa197;padding:10px 0 5px;min-height:28px}.tip{text-align:center;font-size:11px;color:#716b64;padding-bottom:8px}
 @media(max-width:520px){.controls{gap:8px}.control{min-width:100%}}
@@ -44,12 +44,13 @@ h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-
 </head>
 <body>
 <main class="app">
-<div class="head"><h1>D Kurd 10 Handpan</h1><div class="sub">Photorealistic surface · centred oval dimples · optional sound-zone guidelines</div></div>
+<div class="head"><h1>D Kurd 10 Handpan</h1><div class="sub">Photorealistic surface · centred oval dimples · optional guidelines and note names</div></div>
 <div class="controls">
 <div class="control"><label for="sustain">Sustain</label><input id="sustain" type="range" min="0" max="1" step=".01" value=".68"><output id="sustainOut">68%</output></div>
 <div class="control"><label for="tone">Tone</label><input id="tone" type="range" min="0" max="1" step=".01" value=".78"><output id="toneOut">78%</output></div>
 <div class="control"><label for="rotation">Rotation</label><input id="rotation" type="range" min="-180" max="180" step="1" value="0"><output id="rotationOut">0°</output></div>
 <div class="control toggleControl"><div class="toggleText"><label for="guides">Guidelines</label><small>Show centre and shoulder zones</small></div><label class="switch"><input id="guides" type="checkbox" checked><span class="sliderToggle"></span></label></div>
+<div class="control toggleControl"><div class="toggleText"><label for="noteNames">Note Names</label><small>Show or hide note labels</small></div><label class="switch"><input id="noteNames" type="checkbox" checked><span class="sliderToggle"></span></label></div>
 </div>
 <div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
 <div id="status" class="status" aria-live="polite">Tap a note centre, shoulder or the shell</div><div class="tip">For best response on iPad, open in Safari and add to Home Screen.</div>
@@ -57,13 +58,14 @@ h1{font-size:19px;font-weight:600;letter-spacing:.02em;margin:0 0 4px}.sub{font-
 <script>
 (()=>{
 const stage=document.getElementById('stage'),pan=document.getElementById('pan'),shell=document.getElementById('shell'),status=document.getElementById('status');
-const sustain=document.getElementById('sustain'),tone=document.getElementById('tone'),rotation=document.getElementById('rotation'),guides=document.getElementById('guides');
+const sustain=document.getElementById('sustain'),tone=document.getElementById('tone'),rotation=document.getElementById('rotation'),guides=document.getElementById('guides'),noteNames=document.getElementById('noteNames');
 const sustainOut=document.getElementById('sustainOut'),toneOut=document.getElementById('toneOut'),rotationOut=document.getElementById('rotationOut');
 const notes=[['A3',220],['Bb3',233.082],['D4',293.665],['F4',349.228],['A4',440],['C5',523.251],['G4',391.995],['E4',329.628],['C4',261.626]],outer=[],radius=35,baseStart=90;
 notes.forEach(n=>{const b=document.createElement('button');b.type='button';b.className='note';b.dataset.note=n[0];b.dataset.freq=n[1];b.innerHTML='<span class="zoneGuide"></span><span class="label">'+n[0]+'</span>';stage.appendChild(b);outer.push(b)});
 function positionNotes(){const rot=+rotation.value||0;outer.forEach((b,i)=>{const a=(baseStart+i*40+rot)*Math.PI/180;b.style.left=50+radius*Math.cos(a)+'%';b.style.top=50+radius*Math.sin(a)+'%';b.style.transform='translate(-50%,-50%)'});pan.style.transform='rotate('+rot+'deg)';rotationOut.value=Math.round(rot)+'°'}
 rotation.addEventListener('input',positionNotes);positionNotes();sustain.addEventListener('input',()=>sustainOut.value=Math.round(+sustain.value*100)+'%');tone.addEventListener('input',()=>toneOut.value=Math.round(+tone.value*100)+'%');
 function syncGuides(){stage.classList.toggle('showGuides',guides.checked)}guides.addEventListener('change',syncGuides);syncGuides();
+function syncNoteNames(){stage.classList.toggle('hideNoteNames',!noteNames.checked)}noteNames.addEventListener('change',syncNoteNames);syncNoteNames();
 let ctx,master,reverb,wet,warmed=false;const bank=new Map(),voices=[];const POOL=28;
 function init(){if(ctx){if(ctx.state==='suspended')ctx.resume();return true}const AC=window.AudioContext||window.webkitAudioContext;if(!AC){status.textContent='Audio is not supported on this device.';return false}ctx=new AC({latencyHint:'interactive'});master=ctx.createGain();master.gain.value=.8;master.connect(ctx.destination);reverb=ctx.createConvolver();wet=ctx.createGain();wet.gain.value=.035;const len=Math.floor(ctx.sampleRate*1.3),imp=ctx.createBuffer(2,len,ctx.sampleRate);for(let c=0;c<2;c++){const d=imp.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,5)*.18}reverb.buffer=imp;reverb.connect(wet).connect(master);for(let i=0;i<POOL;i++){const f=ctx.createBiquadFilter(),a=ctx.createGain();f.type='lowpass';f.Q.value=.32;a.gain.value=0;f.connect(a);a.connect(master);a.connect(reverb);voices.push({f,a,busyUntil:0})}return true}
 function getVoice(now){let v=voices.find(x=>x.busyUntil<=now+.002);return v||voices.reduce((a,b)=>a.busyUntil<b.busyUntil?a:b)}

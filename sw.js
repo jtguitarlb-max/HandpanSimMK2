@@ -1,5 +1,5 @@
-const CACHE='pocket-handpan-backing-track-v30';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./metal-texture.png','./pocket-handpan-logo.png','./ambience-beach.mp3','./ambience-forest.mp3','./ambience-stream.mp3','./ambience-rain.mp3','./egg-shaker.wav','./backing-d-kurd-atmosphere.mp3'];
+const CACHE='pocket-handpan-real-samples-poc-v32';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./metal-texture.png','./pocket-handpan-logo.png','./ambience-beach.mp3','./ambience-forest.mp3','./ambience-stream.mp3','./ambience-rain.mp3','./egg-shaker.wav','./backing-d-kurd-atmosphere.mp3','./samples/A3_1.wav','./samples/A3_2.wav','./samples/A4_1.wav','./samples/A4_2.wav','./samples/Bb3_1.wav','./samples/Bb3_2.wav','./samples/BodySlap_1.wav','./samples/BodySlap_2.wav','./samples/C4_1.wav','./samples/C4_2.wav','./samples/C5_1.wav','./samples/C5_2.wav','./samples/D3_1.wav','./samples/D3_2.wav','./samples/D4_1.wav','./samples/D4_2.wav','./samples/E4_1.wav','./samples/E4_2.wav','./samples/F4_1.wav','./samples/F4_2.wav','./samples/G4_1.wav','./samples/G4_2.wav'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))})

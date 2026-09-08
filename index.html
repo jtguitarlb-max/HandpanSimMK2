@@ -41,12 +41,11 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .note::after{content:"";position:absolute;inset:0;background-image:url('metal-texture.png');background-size:cover;background-position:center;background-repeat:no-repeat;mix-blend-mode:overlay;opacity:.20;pointer-events:none}
 .note.extra{width:13.5%;aspect-ratio:1.08;border-radius:50% / 45%;font-size:clamp(10px,2.3vw,14px);z-index:4;box-shadow:inset 5px 6px 11px rgba(0,0,0,.47),inset -5px -6px 11px rgba(255,222,179,.11),inset 0 0 0 1px rgba(255,232,201,.03),0 1px 3px rgba(0,0,0,.18)}
 .note.extra::before{width:42%;height:48%;border-radius:50% / 43%}
-.note.extra .zoneGuide::after{width:42%;height:48%}
 .note.extra.hidden{display:none}
 .note.ding{width:30%;aspect-ratio:1.06;border-radius:50% / 47%;padding:0;background:radial-gradient(ellipse at 64% 68%,rgba(202,169,128,.12) 0 16%,transparent 49%),radial-gradient(ellipse at 34% 30%,rgba(0,0,0,.32) 0 10%,rgba(35,29,24,.26) 34%,rgba(91,72,55,.10) 66%,rgba(171,137,101,.08) 100%);box-shadow:inset 8px 10px 20px rgba(0,0,0,.48),inset -8px -10px 20px rgba(255,220,174,.12),inset 0 0 0 1px rgba(255,232,201,.04),0 2px 5px rgba(0,0,0,.22)}
 .note.ding::before{width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg);border-radius:50% / 44%;background:radial-gradient(ellipse at 38% 28%,#d0b08a 0 5%,#9a7b5d 18%,#564335 52%,#1c1714 100%)}
 .label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center;opacity:1;transition:opacity .15s}.hideNoteNames .label{opacity:0}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
-.zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.62);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.zoneGuide::after{content:"";position:absolute;width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(246,236,218,.72);border-radius:50% / 44%;box-shadow:0 0 0 1px rgba(0,0,0,.18)}.note.ding .zoneGuide::after{transform:translate(-50%,-50%) rotate(90deg)}.note:not(.ding) .zoneGuide::after{width:43%;height:49%}
+.zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.66);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
 .status{text-align:center;font-size:12px;color:#aaa197;padding:10px 0 5px;min-height:28px}.tip{text-align:center;font-size:11px;color:#716b64;padding-bottom:8px}
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
@@ -60,7 +59,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <details id="settingsMenu" class="settings">
 <summary>Settings</summary>
 <div class="settingsPanel">
-<div class="control toggleControl"><div class="toggleText"><label for="guides">Guidelines</label><small>Show centre and shoulder zones</small></div><label class="switch"><input id="guides" type="checkbox" checked><span class="sliderToggle"></span></label></div>
+<div class="control toggleControl"><div class="toggleText"><label for="guides">Guidelines</label><small>Show playable note areas</small></div><label class="switch"><input id="guides" type="checkbox" checked><span class="sliderToggle"></span></label></div>
 <div class="control toggleControl"><div class="toggleText"><label for="noteNames">Note Names</label><small>Show or hide note labels</small></div><label class="switch"><input id="noteNames" type="checkbox" checked><span class="sliderToggle"></span></label></div>
 <div class="control toggleControl"><div class="toggleText"><label for="ambience">Ambience</label><small>Background nature sound</small></div><label class="switch"><input id="ambience" type="checkbox"><span class="sliderToggle"></span></label></div>
 <div id="ambienceChoiceRow" class="control selectControl hidden"><label for="ambienceChoice">Sound</label><select id="ambienceChoice" aria-label="Ambience sound"><option value="forest">Forest</option><option value="beach">Beach</option><option value="stream">Stream</option><option value="rain">Rain</option></select></div>
@@ -84,7 +83,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <div class="metroHint">Real egg-shaker sample · tap beat numbers to accent them</div>
 </div></div></details>
 <div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
-<div id="status" class="status" aria-live="polite">Tap a note centre, shoulder or the shell</div><div class="tip">For best response on iPad, open in Safari and add to Home Screen.</div>
+<div id="status" class="status" aria-live="polite">Tap a note, slide between notes, or tap the shell</div><div class="tip">For best response on iPad, open in Safari and add to Home Screen.</div>
 </main>
 <script>
 (()=>{
@@ -178,7 +177,13 @@ async function startBacking(){
 function syncBackingUI(){const on=backingTrack.checked;backingVolume.classList.toggle('hidden',!on);backingVolume.setAttribute('aria-hidden',on?'false':'true');if(on)startBacking();else{backingLoadToken++;stopBacking()}}
 backingTrack.addEventListener('change',syncBackingUI);
 backingLevel.addEventListener('input',()=>{const v=+backingLevel.value;backingLevelOut.value=Math.round(v*100)+'%';if(backingBus&&ctx){backingBus.gain.cancelScheduledValues(ctx.currentTime);backingBus.gain.setTargetAtTime(v*.35,ctx.currentTime,.04)}});
-stage.addEventListener('pointerdown',e=>{const n=e.target.closest('.note');if(n){e.preventDefault();const b=n.getBoundingClientRect(),x=(e.clientX-(b.left+b.width/2))/(b.width/2),y=(e.clientY-(b.top+b.height/2))/(b.height/2),z=Math.sqrt(x*x+y*y)<.48?'centre':'shoulder';playSampledNote(n.dataset.note,e.pressure>0?e.pressure:.72);n.classList.add('hit');setTimeout(()=>n.classList.remove('hit'),70);status.textContent=n.dataset.note+' · real sample';return}if(e.target===shell){e.preventDefault();playSampledShell(e.pressure>0?e.pressure:.65);status.textContent='Body slap · real sample'}});
+let slidePointerId=null,slideLastNote=null;
+function noteAtPoint(x,y){const el=document.elementFromPoint(x,y);return el?el.closest('.note'):null}
+function triggerSampleNote(n,pressure,sliding=false){if(!n)return;playSampledNote(n.dataset.note,pressure>0?pressure:.72);n.classList.add('hit');setTimeout(()=>n.classList.remove('hit'),70);status.textContent=n.dataset.note+(sliding?' · slide':' · real sample')}
+stage.addEventListener('pointerdown',e=>{const n=e.target.closest('.note');if(n){e.preventDefault();slidePointerId=e.pointerId;slideLastNote=n;try{stage.setPointerCapture(e.pointerId)}catch(_){}triggerSampleNote(n,e.pressure,false);return}if(e.target===shell){e.preventDefault();playSampledShell(e.pressure>0?e.pressure:.65);status.textContent='Body slap · real sample'}});
+stage.addEventListener('pointermove',e=>{if(e.pointerId!==slidePointerId)return;e.preventDefault();const n=noteAtPoint(e.clientX,e.clientY);if(n&&n!==slideLastNote){slideLastNote=n;triggerSampleNote(n,e.pressure,true)}});
+function endSlide(e){if(e.pointerId!==slidePointerId)return;slidePointerId=null;slideLastNote=null;try{stage.releasePointerCapture(e.pointerId)}catch(_){}}
+stage.addEventListener('pointerup',endSlide);stage.addEventListener('pointercancel',endSlide);
 document.addEventListener('pointerdown',()=>{loadRealSamples()},{once:true});
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 })();

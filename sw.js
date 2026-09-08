@@ -1,4 +1,4 @@
-const CACHE='pocket-handpan-real-samples-poc-v34-slide-legato';
+const CACHE='pocket-handpan-v35-numbers-multitouch';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./metal-texture.png','./pocket-handpan-logo.png','./ambience-beach.mp3','./ambience-forest.mp3','./ambience-stream.mp3','./ambience-rain.mp3','./egg-shaker.wav','./backing-d-kurd-atmosphere.mp3','./A3_1.wav','./A3_2.wav','./A4_1.wav','./A4_2.wav','./Bb3_1.wav','./Bb3_2.wav','./BodySlap_1.wav','./BodySlap_2.wav','./C4_1.wav','./C4_2.wav','./C5_1.wav','./C5_2.wav','./D3_1.wav','./D3_2.wav','./D4_1.wav','./D4_2.wav','./E4_1.wav','./E4_2.wav','./F4_1.wav','./F4_2.wav','./G4_1.wav','./G4_2.wav'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

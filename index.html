@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v48: gold logo matched to the four layer icons; based on v46 -->
+<!-- v50: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -41,32 +41,94 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.layerIcon{width:11.5vw;height:11.5vw;min-width:36px;min-height:36px}}
 
 .stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto 42px;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
-.stage::after{content:"";position:absolute;left:3.5%;right:3.5%;top:50%;height:1px;background:rgba(246,236,218,.66);box-shadow:0 0 0 1px rgba(0,0,0,.18);z-index:2;pointer-events:none;opacity:0;transition:opacity .15s}.stage.showGuides::after{opacity:1}
+.stage::after{content:"";position:absolute;left:3.5%;right:3.5%;top:50%;height:1px;background:rgba(255,225,159,.70);box-shadow:0 0 0 1px rgba(0,0,0,.18);z-index:2;pointer-events:none;opacity:0;transition:opacity .15s}.stage.showGuides::after{opacity:1}
 .pan{position:absolute;inset:1.5%;border-radius:50%;overflow:hidden;transform-origin:50% 50%;background:
- radial-gradient(circle at 38% 24%,rgba(255,222,175,.42) 0 7%,transparent 28%),
- radial-gradient(circle at 72% 62%,rgba(40,72,92,.18),transparent 32%),
- radial-gradient(circle at 47% 52%,#766452 0,#5a4c3f 38%,#3b342d 70%,#241f1b 100%);
- border:3px solid #28221d;box-shadow:inset 0 0 0 2px #6b5847,inset 0 0 48px rgba(255,204,142,.12),inset 0 0 90px rgba(0,0,0,.6)}
+ radial-gradient(circle at 34% 20%,rgba(255,241,184,.62) 0 6%,rgba(255,202,91,.20) 17%,transparent 34%),
+ radial-gradient(circle at 73% 66%,rgba(255,181,48,.18),transparent 34%),
+ radial-gradient(circle at 48% 50%,#c69039 0,#9c6a25 34%,#674317 68%,#2b1b0b 100%);
+ border:3px solid #6d4516;box-shadow:inset 0 0 0 2px #d6a247,inset 0 0 52px rgba(255,199,87,.24),inset 0 0 96px rgba(28,14,3,.62),0 0 14px rgba(225,160,48,.10)}
 .pan::before{content:"";position:absolute;inset:0;background-image:url('metal-texture.png');background-size:cover;background-position:center;background-repeat:no-repeat;mix-blend-mode:soft-light;opacity:.46;filter:contrast(1.08) saturate(.84);pointer-events:none}
 .pan::after{content:"";position:absolute;inset:2.2%;border-radius:50%;border:1px solid rgba(255,230,197,.2);box-shadow:inset 0 0 0 1px rgba(0,0,0,.65),inset 0 0 24px rgba(0,0,0,.3);pointer-events:none}
 .shellHit{position:absolute;inset:1.5%;border:0;border-radius:50%;background:transparent;z-index:1;touch-action:none}
 .note{position:absolute;width:20%;aspect-ratio:1.12;transform:translate(-50%,-50%);border-radius:50% / 46%;border:0;background:
- radial-gradient(ellipse at 66% 70%,rgba(224,192,151,.13) 0 14%,transparent 48%),
- radial-gradient(ellipse at 34% 30%,rgba(0,0,0,.34) 0 9%,rgba(31,26,22,.23) 31%,rgba(87,69,53,.08) 63%,rgba(176,143,105,.08) 100%);
- box-shadow:inset 6px 8px 14px rgba(0,0,0,.46),inset -6px -8px 14px rgba(255,222,179,.12),inset 0 0 0 1px rgba(255,232,201,.035),0 1px 3px rgba(0,0,0,.18);color:#f3eee8;font-size:clamp(12px,3vw,18px);font-weight:600;display:flex;align-items:center;justify-content:center;padding:0;z-index:3;overflow:hidden;touch-action:none;-webkit-tap-highlight-color:transparent;text-shadow:0 1px 3px #000}
+ radial-gradient(ellipse at 67% 70%,rgba(255,214,124,.22) 0 14%,transparent 50%),
+ radial-gradient(ellipse at 34% 30%,rgba(55,31,8,.46) 0 9%,rgba(91,55,16,.30) 32%,rgba(169,111,35,.13) 65%,rgba(238,182,79,.12) 100%);
+ box-shadow:inset 6px 8px 14px rgba(37,19,4,.52),inset -6px -8px 14px rgba(255,218,126,.20),inset 0 0 0 1px rgba(255,229,162,.07),0 1px 3px rgba(0,0,0,.20);color:#fff1cd;font-size:clamp(12px,3vw,18px);font-weight:600;display:flex;align-items:center;justify-content:center;padding:0;z-index:3;overflow:hidden;touch-action:none;-webkit-tap-highlight-color:transparent;text-shadow:0 1px 3px #000}
 .note::before{content:"";position:absolute;width:43%;height:49%;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50% / 44%;background:
- radial-gradient(ellipse at 68% 72%,rgba(214,181,139,.24) 0 7%,transparent 37%),
- radial-gradient(ellipse at 50% 50%,#221c18 0 34%,#342a23 56%,#5f4d3c 78%,#8f7358 100%);
- box-shadow:inset 5px 6px 10px rgba(0,0,0,.72),inset -5px -6px 10px rgba(255,223,181,.18),inset 0 0 0 1px rgba(255,231,199,.08),0 1px 2px rgba(0,0,0,.18)}
+ radial-gradient(ellipse at 68% 72%,rgba(255,205,103,.30) 0 7%,transparent 38%),
+ radial-gradient(ellipse at 50% 50%,#2b1908 0 32%,#503010 54%,#8c5b1d 76%,#c8923c 100%);
+ box-shadow:inset 5px 6px 10px rgba(24,11,2,.76),inset -5px -6px 10px rgba(255,218,123,.24),inset 0 0 0 1px rgba(255,228,158,.10),0 1px 2px rgba(0,0,0,.20)}
 .note::after{content:"";position:absolute;inset:0;background-image:url('metal-texture.png');background-size:cover;background-position:center;background-repeat:no-repeat;mix-blend-mode:overlay;opacity:.20;pointer-events:none}
 .note.extra{width:13.5%;aspect-ratio:1.08;border-radius:50% / 45%;font-size:clamp(10px,2.3vw,14px);z-index:4;box-shadow:inset 5px 6px 11px rgba(0,0,0,.47),inset -5px -6px 11px rgba(255,222,179,.11),inset 0 0 0 1px rgba(255,232,201,.03),0 1px 3px rgba(0,0,0,.18)}
 .note.extra::before{width:42%;height:48%;border-radius:50% / 43%}
 .note.extra.hidden{display:none}
-.note.ding{width:30%;aspect-ratio:1.06;border-radius:50% / 47%;padding:0;background:radial-gradient(ellipse at 64% 68%,rgba(202,169,128,.12) 0 16%,transparent 49%),radial-gradient(ellipse at 34% 30%,rgba(0,0,0,.32) 0 10%,rgba(35,29,24,.26) 34%,rgba(91,72,55,.10) 66%,rgba(171,137,101,.08) 100%);box-shadow:inset 8px 10px 20px rgba(0,0,0,.48),inset -8px -10px 20px rgba(255,220,174,.12),inset 0 0 0 1px rgba(255,232,201,.04),0 2px 5px rgba(0,0,0,.22)}
-.note.ding::before{width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg);border-radius:50% / 44%;background:radial-gradient(ellipse at 38% 28%,#d0b08a 0 5%,#9a7b5d 18%,#564335 52%,#1c1714 100%)}
+.note.ding{width:30%;aspect-ratio:1.06;border-radius:50% / 47%;padding:0;background:radial-gradient(ellipse at 64% 68%,rgba(255,208,112,.20) 0 16%,transparent 49%),radial-gradient(ellipse at 34% 30%,rgba(72,39,8,.40) 0 10%,rgba(103,61,17,.30) 34%,rgba(175,112,31,.15) 66%,rgba(236,177,70,.12) 100%);box-shadow:inset 8px 10px 20px rgba(35,17,3,.54),inset -8px -10px 20px rgba(255,217,119,.20),inset 0 0 0 1px rgba(255,231,164,.07),0 2px 5px rgba(0,0,0,.24)}
+.note.ding::before{width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg);border-radius:50% / 44%;background:radial-gradient(ellipse at 35% 25%,#ffd98a 0 4%,#d9a044 15%,#93601f 40%,#4c2d0d 68%,#1f1105 100%);box-shadow:inset -5px -7px 10px rgba(30,13,2,.54),inset 5px 6px 10px rgba(255,223,137,.24)}
 .label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center;opacity:1;transition:opacity .15s}.hideNoteNames .label{opacity:0}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
-.zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.66);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(255,225,159,.70);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
+
+
+/* v50 unified bright-gold visual treatment */
+.pan{
+  background:
+    radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
+    radial-gradient(circle at 72% 70%,rgba(255,190,43,.28),transparent 35%),
+    radial-gradient(circle at 48% 49%,#e0ad3f 0,#d09a28 34%,#b37812 67%,#6e4306 100%) !important;
+  border-color:#b77a10 !important;
+  box-shadow:
+    inset 0 0 0 2px #f1c65d,
+    inset 0 0 42px rgba(255,224,128,.34),
+    inset 0 0 88px rgba(72,38,2,.34),
+    0 0 16px rgba(228,172,53,.12) !important;
+}
+.pan::before{
+  opacity:.24 !important;
+  mix-blend-mode:soft-light !important;
+  filter:contrast(1.02) saturate(.62) brightness(1.18) sepia(.18) !important;
+}
+.pan::after{
+  border-color:rgba(255,226,146,.42) !important;
+  box-shadow:inset 0 0 0 1px rgba(87,48,4,.48),inset 0 0 20px rgba(77,42,3,.20) !important;
+}
+.note{
+  background:
+    radial-gradient(ellipse at 68% 70%,rgba(255,229,150,.34) 0 13%,transparent 49%),
+    radial-gradient(ellipse at 34% 30%,rgba(77,43,4,.40) 0 8%,rgba(113,67,8,.24) 31%,rgba(207,147,34,.15) 62%,rgba(255,214,112,.16) 100%) !important;
+  box-shadow:
+    inset 6px 8px 14px rgba(69,37,3,.42),
+    inset -6px -8px 14px rgba(255,230,158,.28),
+    inset 0 0 0 1px rgba(255,238,190,.10),
+    0 1px 3px rgba(0,0,0,.18) !important;
+}
+.note::before{
+  background:
+    radial-gradient(ellipse at 67% 70%,rgba(255,226,139,.38) 0 8%,transparent 37%),
+    radial-gradient(ellipse at 50% 50%,#5a3406 0 31%,#87520a 53%,#b97813 75%,#dda638 100%) !important;
+  box-shadow:
+    inset 5px 6px 10px rgba(57,29,2,.63),
+    inset -5px -6px 10px rgba(255,230,154,.30),
+    inset 0 0 0 1px rgba(255,239,193,.12),
+    0 1px 2px rgba(0,0,0,.18) !important;
+}
+.note.ding{
+  background:
+    radial-gradient(ellipse at 64% 68%,rgba(255,232,157,.34) 0 15%,transparent 48%),
+    radial-gradient(ellipse at 34% 30%,rgba(79,42,3,.38) 0 9%,rgba(116,69,7,.24) 33%,rgba(206,145,29,.15) 65%,rgba(255,216,112,.15) 100%) !important;
+  box-shadow:
+    inset 8px 10px 20px rgba(62,31,2,.45),
+    inset -8px -10px 20px rgba(255,230,149,.28),
+    inset 0 0 0 1px rgba(255,239,194,.10),
+    0 2px 5px rgba(0,0,0,.20) !important;
+}
+.note.ding::before{
+  background:
+    radial-gradient(ellipse at 35% 24%,#fff0b0 0 4%,#f0c45a 15%,#d79d28 39%,#9a5f0b 67%,#4f2d04 100%) !important;
+  box-shadow:
+    inset -5px -7px 10px rgba(52,25,2,.43),
+    inset 5px 6px 10px rgba(255,235,166,.32) !important;
+}
+.label{color:#fff0c1 !important}
 
 </style>
 </head>

@@ -10,6 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
+<!-- v44: layer icons aligned with outer ambience columns and handpan top/bottom -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -33,11 +34,11 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 
 .layerIcon{position:absolute;z-index:9;width:min(11vw,58px);height:min(11vw,58px);max-width:58px;max-height:58px;min-width:38px;min-height:38px;padding:0;border:0;background:transparent;border-radius:50%;pointer-events:none;opacity:.92;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));}
 .layerIcon img{display:block;width:100%;height:100%;object-fit:contain;}
-.layerIcon.topLeft{left:1.5%;top:16%;transform:translate(-10%,-50%);}
-.layerIcon.topRight{right:1.5%;top:16%;transform:translate(10%,-50%);}
-.layerIcon.bottomLeft{left:1.5%;bottom:16%;transform:translate(-10%,50%);}
-.layerIcon.bottomRight{right:1.5%;bottom:16%;transform:translate(10%,50%);}
-@media(max-width:520px){.layerIcon{width:11.5vw;height:11.5vw;min-width:36px;min-height:36px}.layerIcon.topLeft,.layerIcon.topRight{top:17%}.layerIcon.bottomLeft,.layerIcon.bottomRight{bottom:17%}}
+.layerIcon.topLeft{left:12.5%;top:1.5%;transform:translate(-50%,-50%);}
+.layerIcon.topRight{left:87.5%;top:1.5%;transform:translate(-50%,-50%);}
+.layerIcon.bottomLeft{left:12.5%;top:98.5%;transform:translate(-50%,-50%);}
+.layerIcon.bottomRight{left:87.5%;top:98.5%;transform:translate(-50%,-50%);}
+@media(max-width:520px){.layerIcon{width:11.5vw;height:11.5vw;min-width:36px;min-height:36px}}
 
 .stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
 .stage::after{content:"";position:absolute;left:3.5%;right:3.5%;top:50%;height:1px;background:rgba(246,236,218,.66);box-shadow:0 0 0 1px rgba(0,0,0,.18);z-index:2;pointer-events:none;opacity:0;transition:opacity .15s}.stage.showGuides::after{opacity:1}

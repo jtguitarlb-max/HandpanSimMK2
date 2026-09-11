@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v44: layer icons aligned with outer ambience columns and handpan top/bottom -->
+<!-- v46: remove live readout/iPad tip and add even spacing around playing area -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -19,18 +19,18 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .app{max-width:780px;margin:0 auto}
 .head{padding:2px 0 7px;text-align:center;display:flex;justify-content:center;align-items:center}
 .brandLogo{display:block;width:min(86vw,520px);height:auto;max-height:132px;object-fit:contain;border-radius:4px}
-.settingsWrap{position:relative;z-index:20;display:flex;justify-content:flex-end;padding:6px 0 10px}.settings{position:relative;width:min(100%,340px)}.settings>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.24);border-radius:12px;backdrop-filter:blur(10px);font-size:14px;font-weight:600;-webkit-tap-highlight-color:transparent}.settings>summary::-webkit-details-marker{display:none}.settings>summary::after{content:"⌄";font-size:17px;line-height:1;color:#cbbba7;transition:transform .16s}.settings[open]>summary::after{transform:rotate(180deg)}.settingsPanel{position:absolute;right:0;top:calc(100% + 7px);width:min(92vw,340px);padding:9px;border:1px solid rgba(255,255,255,.10);background:rgba(20,18,16,.96);border-radius:14px;box-shadow:0 16px 34px rgba(0,0,0,.42);backdrop-filter:blur(14px)}.control{display:grid;grid-template-columns:72px minmax(110px,1fr) 42px;gap:8px;align-items:center;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06)}.control:last-child{border-bottom:0}.control.toggleControl{grid-template-columns:1fr auto}.toggleText{display:flex;flex-direction:column;gap:2px}.toggleText small{font-size:10px;color:#92897f}.switch{position:relative;width:46px;height:27px;display:inline-block}.switch input{opacity:0;width:0;height:0}.sliderToggle{position:absolute;inset:0;border-radius:999px;background:#4a4641;transition:.18s;border:1px solid rgba(255,255,255,.12)}.sliderToggle:before{content:"";position:absolute;width:21px;height:21px;left:2px;top:2px;border-radius:50%;background:#eee7de;box-shadow:0 1px 4px rgba(0,0,0,.5);transition:.18s}.switch input:checked+.sliderToggle{background:#9b7b55}.switch input:checked+.sliderToggle:before{transform:translateX(19px)}.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px;background:#26221f;border:1px solid rgba(255,255,255,.10);border-radius:9px}.segmentBtn{border:0;background:transparent;color:#a9a097;border-radius:7px;min-height:30px;padding:0 7px;font:inherit;font-size:10px;font-weight:600;-webkit-tap-highlight-color:transparent}.segmentBtn.active{background:#8a6c4c;color:#fff7ec;box-shadow:0 1px 4px rgba(0,0,0,.32)}
+.settingsWrap{position:relative;z-index:20;display:flex;justify-content:flex-end;padding:6px 0 42px}.settings{position:relative;width:min(100%,340px)}.settings>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;border:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.24);border-radius:12px;backdrop-filter:blur(10px);font-size:14px;font-weight:600;-webkit-tap-highlight-color:transparent}.settings>summary::-webkit-details-marker{display:none}.settings>summary::after{content:"⌄";font-size:17px;line-height:1;color:#cbbba7;transition:transform .16s}.settings[open]>summary::after{transform:rotate(180deg)}.settingsPanel{position:absolute;right:0;top:calc(100% + 7px);width:min(92vw,340px);padding:9px;border:1px solid rgba(255,255,255,.10);background:rgba(20,18,16,.96);border-radius:14px;box-shadow:0 16px 34px rgba(0,0,0,.42);backdrop-filter:blur(14px)}.control{display:grid;grid-template-columns:72px minmax(110px,1fr) 42px;gap:8px;align-items:center;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.06)}.control:last-child{border-bottom:0}.control.toggleControl{grid-template-columns:1fr auto}.toggleText{display:flex;flex-direction:column;gap:2px}.toggleText small{font-size:10px;color:#92897f}.switch{position:relative;width:46px;height:27px;display:inline-block}.switch input{opacity:0;width:0;height:0}.sliderToggle{position:absolute;inset:0;border-radius:999px;background:#4a4641;transition:.18s;border:1px solid rgba(255,255,255,.12)}.sliderToggle:before{content:"";position:absolute;width:21px;height:21px;left:2px;top:2px;border-radius:50%;background:#eee7de;box-shadow:0 1px 4px rgba(0,0,0,.5);transition:.18s}.switch input:checked+.sliderToggle{background:#9b7b55}.switch input:checked+.sliderToggle:before{transform:translateX(19px)}.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:2px;background:#26221f;border:1px solid rgba(255,255,255,.10);border-radius:9px}.segmentBtn{border:0;background:transparent;color:#a9a097;border-radius:7px;min-height:30px;padding:0 7px;font:inherit;font-size:10px;font-weight:600;-webkit-tap-highlight-color:transparent}.segmentBtn.active{background:#8a6c4c;color:#fff7ec;box-shadow:0 1px 4px rgba(0,0,0,.32)}
 .control label{font-size:13px}.control output{font-size:12px;color:#bbb2a7;min-width:38px;text-align:right}input[type=range]{width:100%;accent-color:#d8c5a8}
 .selectControl{grid-template-columns:1fr 172px}.selectControl.hidden{display:none}.selectControl select{width:100%;appearance:auto;background:#2d2925;color:#f4efe8;border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:7px 8px;font:inherit;font-size:12px}.ambienceVolume.hidden{display:none}.ambienceVolume output{font-size:12px;color:#bbb2a7;text-align:right}
 
-.ambienceButtons{width:min(94vw,650px);margin:9px auto 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:start}
+.ambienceButtons{width:min(94vw,650px);margin:0 auto 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-items:start}
 .ambienceBtn{appearance:none;border:0;background:transparent;color:#c8beb3;padding:0;display:flex;flex-direction:column;align-items:center;gap:5px;font:inherit;font-size:10px;letter-spacing:.02em;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .ambienceBtn img{display:block;width:min(15vw,82px);height:min(15vw,82px);max-width:82px;max-height:82px;object-fit:contain;filter:brightness(.72) saturate(.82);opacity:.72;transform:scale(.94);transition:filter .2s,opacity .2s,transform .2s}
 .ambienceBtn span{opacity:.62;transition:opacity .2s,color .2s}
 .ambienceBtn.active img{filter:brightness(1.08) saturate(1.02) drop-shadow(0 0 9px rgba(214,170,93,.34));opacity:1;transform:scale(1)}
 .ambienceBtn.active span{opacity:1;color:#e1cfb4}
 .ambienceBtn:active img{transform:scale(.96)}
-@media(max-width:520px){.ambienceButtons{gap:5px;margin-top:7px}.ambienceBtn img{width:20vw;height:20vw;max-width:78px;max-height:78px}.ambienceBtn{font-size:9px}}
+@media(max-width:520px){.ambienceButtons{gap:5px;margin-top:0}.ambienceBtn img{width:20vw;height:20vw;max-width:78px;max-height:78px}.ambienceBtn{font-size:9px}}
 
 .layerIcon{position:absolute;z-index:9;width:min(11vw,58px);height:min(11vw,58px);max-width:58px;max-height:58px;min-width:38px;min-height:38px;padding:0;border:0;background:transparent;border-radius:50%;pointer-events:none;opacity:.92;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));}
 .layerIcon img{display:block;width:100%;height:100%;object-fit:contain;}
@@ -40,7 +40,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .layerIcon.bottomRight{left:87.5%;top:98.5%;transform:translate(-50%,-50%);}
 @media(max-width:520px){.layerIcon{width:11.5vw;height:11.5vw;min-width:36px;min-height:36px}}
 
-.stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
+.stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto 42px;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
 .stage::after{content:"";position:absolute;left:3.5%;right:3.5%;top:50%;height:1px;background:rgba(246,236,218,.66);box-shadow:0 0 0 1px rgba(0,0,0,.18);z-index:2;pointer-events:none;opacity:0;transition:opacity .15s}.stage.showGuides::after{opacity:1}
 .pan{position:absolute;inset:1.5%;border-radius:50%;overflow:hidden;transform-origin:50% 50%;background:
  radial-gradient(circle at 38% 24%,rgba(255,222,175,.42) 0 7%,transparent 28%),
@@ -66,7 +66,6 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .note.ding::before{width:48%;height:54%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg);border-radius:50% / 44%;background:radial-gradient(ellipse at 38% 28%,#d0b08a 0 5%,#9a7b5d 18%,#564335 52%,#1c1714 100%)}
 .label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;text-align:center;opacity:1;transition:opacity .15s}.hideNoteNames .label{opacity:0}.label small{font-size:.52em;font-weight:400;opacity:.7;margin-top:2px}.note.hit{filter:brightness(1.25)}
 .zoneGuide{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .15s}.showGuides .zoneGuide{opacity:1}.zoneGuide::before{content:"";position:absolute;inset:4%;border:1px solid rgba(246,236,218,.66);border-radius:inherit;box-shadow:0 0 0 1px rgba(0,0,0,.18)}
-.status{text-align:center;font-size:12px;color:#aaa197;padding:10px 0 5px;min-height:28px}.tip{text-align:center;font-size:11px;color:#716b64;padding-bottom:8px}
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 </style>
@@ -94,11 +93,10 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <button class="ambienceBtn" type="button" data-ambience="stream" aria-pressed="false"><img src="ambience-stream-icon.png" alt=""><span>Stream</span></button>
 <button class="ambienceBtn" type="button" data-ambience="rain" aria-pressed="false"><img src="ambience-rain-icon.png" alt=""><span>Rain</span></button>
 </div>
-<div id="status" class="status" aria-live="polite">Tap a note, slide between notes, or tap the shell</div><div class="tip">For best response on iPad, open in Safari and add to Home Screen.</div>
 </main>
 <script>
 (()=>{
-const stage=document.getElementById('stage'),pan=document.getElementById('pan'),shell=document.getElementById('shell'),status=document.getElementById('status');
+const stage=document.getElementById('stage'),pan=document.getElementById('pan'),shell=document.getElementById('shell');const status={set textContent(_){}};
 const guides=document.getElementById('guides'),labelMode=document.getElementById('labelMode'),ambienceButtons=document.getElementById('ambienceButtons'),backingTrack=document.getElementById('backingTrack'),backingVolume=document.getElementById('backingVolume'),backingLevel=document.getElementById('backingLevel');
 const backingLevelOut=document.getElementById('backingLevelOut');
 const settingsMenu=document.getElementById('settingsMenu');

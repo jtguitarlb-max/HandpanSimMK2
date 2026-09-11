@@ -31,6 +31,14 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .ambienceBtn:active img{transform:scale(.96)}
 @media(max-width:520px){.ambienceButtons{gap:5px;margin-top:7px}.ambienceBtn img{width:20vw;height:20vw;max-width:78px;max-height:78px}.ambienceBtn{font-size:9px}}
 
+.layerIcon{position:absolute;z-index:9;width:min(11vw,58px);height:min(11vw,58px);max-width:58px;max-height:58px;min-width:38px;min-height:38px;padding:0;border:0;background:transparent;border-radius:50%;pointer-events:none;opacity:.92;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));}
+.layerIcon img{display:block;width:100%;height:100%;object-fit:contain;}
+.layerIcon.topLeft{left:1.5%;top:16%;transform:translate(-10%,-50%);}
+.layerIcon.topRight{right:1.5%;top:16%;transform:translate(10%,-50%);}
+.layerIcon.bottomLeft{left:1.5%;bottom:16%;transform:translate(-10%,50%);}
+.layerIcon.bottomRight{right:1.5%;bottom:16%;transform:translate(10%,50%);}
+@media(max-width:520px){.layerIcon{width:11.5vw;height:11.5vw;min-width:36px;min-height:36px}.layerIcon.topLeft,.layerIcon.topRight{top:17%}.layerIcon.bottomLeft,.layerIcon.bottomRight{bottom:17%}}
+
 .stage{position:relative;width:min(94vw,650px);aspect-ratio:1;margin:0 auto;touch-action:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 20px 28px rgba(0,0,0,.48))}
 .stage::after{content:"";position:absolute;left:3.5%;right:3.5%;top:50%;height:1px;background:rgba(246,236,218,.66);box-shadow:0 0 0 1px rgba(0,0,0,.18);z-index:2;pointer-events:none;opacity:0;transition:opacity .15s}.stage.showGuides::after{opacity:1}
 .pan{position:absolute;inset:1.5%;border-radius:50%;overflow:hidden;transform-origin:50% 50%;background:
@@ -90,7 +98,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <div class="metroField metroAccents"><span>Accent beats</span><div id="metroBeats" class="metroBeats"></div></div>
 <div class="metroHint">Real egg-shaker sample · tap beat numbers to accent them</div>
 </div></div></details>
-<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
+<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="layerIcon topLeft" type="button" aria-label="Shaker layer" disabled><img src="layer-shaker-icon.png" alt=""></button><button class="layerIcon topRight" type="button" aria-label="Atmospheric chords layer" disabled><img src="layer-synth-icon.png" alt=""></button><button class="layerIcon bottomLeft" type="button" aria-label="Cajón layer" disabled><img src="layer-cajon-icon.png" alt=""></button><button class="layerIcon bottomRight" type="button" aria-label="Vocal harmonies layer" disabled><img src="layer-vocals-icon.png" alt=""></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
 <div id="ambienceButtons" class="ambienceButtons" role="group" aria-label="Choose ambience">
 <button class="ambienceBtn" type="button" data-ambience="forest" aria-pressed="false"><img src="ambience-forest-icon.png" alt=""><span>Forest</span></button>
 <button class="ambienceBtn" type="button" data-ambience="beach" aria-pressed="false"><img src="ambience-beach-icon.png" alt=""><span>Beach</span></button>

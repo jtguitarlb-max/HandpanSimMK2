@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v51: gold handpan matched to gold logo/layer icons; based on v48 -->
+<!-- v52: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 
-/* v51 unified bright-gold visual treatment */
+/* v52 unified bright-gold visual treatment */
 .pan{
   background:
     radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
@@ -131,7 +131,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#fff0c1 !important}
 
 
-/* v51 — reference bronze-gold palette sampled from supplied handpan photo */
+/* v52 — reference bronze-gold palette sampled from supplied handpan photo */
 .pan{
   background:
     radial-gradient(circle at 31% 17%,rgba(255,224,153,.90) 0 5%,rgba(230,177,90,.44) 14%,transparent 31%),
@@ -191,6 +191,65 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
     inset 5px 6px 10px rgba(239,197,129,.27) !important;
 }
 .label{color:#f2d6a5 !important}
+
+
+/* v52 — polished/high-contrast version of the v52 bronze handpan */
+.pan{
+  background:
+    radial-gradient(ellipse at 31% 15%,rgba(255,241,190,.98) 0 3%,rgba(255,211,123,.72) 8%,rgba(214,151,70,.28) 19%,transparent 34%),
+    radial-gradient(ellipse at 67% 31%,rgba(255,226,159,.34) 0 7%,transparent 26%),
+    linear-gradient(118deg,transparent 13%,rgba(255,236,181,.30) 29%,rgba(255,250,218,.55) 38%,rgba(211,147,65,.10) 49%,transparent 61%),
+    radial-gradient(circle at 73% 72%,rgba(65,35,12,.32) 0 8%,transparent 37%),
+    radial-gradient(circle at 48% 49%,#d4a25d 0%,#bd8038 34%,#895521 67%,#3c230d 100%) !important;
+  border-color:#c58b47 !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(248,201,126,.80),
+    inset 15px 11px 35px rgba(255,226,164,.23),
+    inset -19px -24px 48px rgba(48,25,8,.53),
+    inset 0 0 86px rgba(72,39,13,.19),
+    0 3px 11px rgba(0,0,0,.30) !important;
+}
+.pan::before{
+  opacity:.55 !important;
+  filter:contrast(1.28) brightness(1.10) saturate(.96) !important;
+}
+.note{
+  background:
+    radial-gradient(ellipse at 67% 67%,rgba(255,225,157,.43) 0 9%,transparent 40%),
+    radial-gradient(ellipse at 34% 30%,rgba(54,29,9,.58) 0 8%,rgba(101,58,20,.34) 30%,rgba(185,124,52,.17) 62%,rgba(238,184,105,.18) 100%) !important;
+  box-shadow:
+    inset 7px 9px 15px rgba(49,25,7,.60),
+    inset -7px -9px 15px rgba(255,218,143,.32),
+    inset 0 0 0 1px rgba(255,230,177,.15),
+    0 2px 4px rgba(35,18,6,.28) !important;
+}
+.note::before{
+  background:
+    radial-gradient(ellipse at 32% 24%,rgba(255,231,171,.76) 0 5%,transparent 23%),
+    radial-gradient(ellipse at 50% 50%,#3d220b 0 28%,#704117 51%,#a66829 74%,#d69d54 100%) !important;
+  box-shadow:
+    inset 6px 7px 11px rgba(45,22,6,.72),
+    inset -6px -7px 11px rgba(255,218,144,.34),
+    0 1px 3px rgba(0,0,0,.28) !important;
+}
+.note.ding{
+  background:
+    radial-gradient(ellipse at 66% 68%,rgba(255,225,156,.42) 0 12%,transparent 46%),
+    radial-gradient(ellipse at 34% 29%,rgba(53,28,8,.55) 0 9%,rgba(103,59,19,.34) 33%,rgba(185,124,50,.17) 65%,rgba(240,185,103,.17) 100%) !important;
+  box-shadow:
+    inset 9px 11px 21px rgba(47,23,6,.60),
+    inset -9px -11px 21px rgba(255,219,143,.34),
+    inset 0 0 0 1px rgba(255,232,180,.15),
+    0 2px 5px rgba(0,0,0,.27) !important;
+}
+.note.ding::before{
+  background:
+    radial-gradient(ellipse at 31% 22%,#fff0c2 0 3%,#e7b56f 13%,#bd7d38 38%,#784616 67%,#352008 100%) !important;
+  box-shadow:
+    inset -6px -8px 11px rgba(43,20,5,.58),
+    inset 6px 7px 11px rgba(255,228,164,.42),
+    0 1px 4px rgba(0,0,0,.24) !important;
+}
 
 </style>
 </head>

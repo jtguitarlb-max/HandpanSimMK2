@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v54: gold handpan matched to gold logo/layer icons; based on v48 -->
+<!-- v55: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 
-/* v54 unified bright-gold visual treatment */
+/* v55 unified bright-gold visual treatment */
 .pan{
   background:
     radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
@@ -131,7 +131,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#fff0c1 !important}
 
 
-/* v54 — reference bronze-gold palette sampled from supplied handpan photo */
+/* v55 — reference bronze-gold palette sampled from supplied handpan photo */
 .pan{
   background:
     radial-gradient(circle at 31% 17%,rgba(255,224,153,.90) 0 5%,rgba(230,177,90,.44) 14%,transparent 31%),
@@ -193,7 +193,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#f2d6a5 !important}
 
 
-/* v54 — polished/high-contrast version of the v54 bronze handpan */
+/* v55 — polished/high-contrast version of the v55 bronze handpan */
 .pan{
   background:
     radial-gradient(ellipse at 31% 15%,rgba(255,241,190,.98) 0 3%,rgba(255,211,123,.72) 8%,rgba(214,151,70,.28) 19%,transparent 34%),
@@ -252,7 +252,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 }
 
 
-/* v54 — restore concave appearance to outer-note dimples (notes 1–9) */
+/* v55 — restore concave appearance to outer-note dimples (notes 1–9) */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 31% 27%,rgba(38,20,6,.72) 0 5%,rgba(67,37,11,.42) 18%,transparent 43%),
@@ -268,6 +268,19 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .layerIcon[data-layer]{pointer-events:auto;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .layerIcon[data-layer] img{opacity:.50;filter:saturate(.72) brightness(.70);transition:.18s}
 .layerIcon[data-layer].active img{opacity:1;filter:brightness(1.14) saturate(1.05) drop-shadow(0 0 10px rgba(226,169,61,.48))}
+
+/* v55 — stronger concave cue for outer-note dimples without dulling the polished shell */
+.note:not(.ding)::before{
+  background:
+    radial-gradient(ellipse at 29% 25%,rgba(34,17,5,.78) 0 7%,rgba(69,38,11,.46) 18%,transparent 43%),
+    radial-gradient(ellipse at 72% 74%,rgba(255,226,159,.54) 0 6%,rgba(232,177,99,.24) 18%,transparent 43%),
+    radial-gradient(ellipse at 50% 50%,#45260b 0 22%,#5d3511 42%,#7d4a1c 65%,#a66b30 83%,#c48e4d 100%) !important;
+  box-shadow:
+    inset 6px 7px 11px rgba(28,13,3,.68),
+    inset -6px -7px 11px rgba(250,204,132,.31),
+    inset 0 0 0 1px rgba(244,201,135,.10) !important;
+}
+
 </style>
 </head>
 <body>
@@ -428,46 +441,93 @@ stage.addEventListener('pointermove',e=>{const state=slidePointers.get(e.pointer
 function endSlide(e){if(!slidePointers.has(e.pointerId))return;slidePointers.delete(e.pointerId);try{stage.releasePointerCapture(e.pointerId)}catch(_){}}
 stage.addEventListener('pointerup',endSlide);stage.addEventListener('pointercancel',endSlide);stage.addEventListener('lostpointercapture',e=>slidePointers.delete(e.pointerId));
 document.addEventListener('pointerdown',()=>{loadRealSamples()},{once:true});
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-})();
 
-const syncedLayerFiles={shaker:'loop-shaker.wav',cajon:'loop-cajon.wav',choir:'loop-choir.wav'};
-const syncedLayerBuffers=new Map(), syncedLayerVoices=new Map();
-let syncedLayersStarted=false, syncedLayersPromise=null;
+// v55 — sample-accurate synchronised musical layers.
+// All three loops begin together and continue running silently when deselected,
+// so any layer can be brought in/out without losing phase.
+const syncedLayerFiles={
+  shaker:'loop-shaker.wav',
+  cajon:'loop-cajon.wav',
+  choir:'loop-choir.wav'
+};
+const syncedLayerBuffers=new Map();
+const syncedLayerVoices=new Map();
+let syncedLayersStarted=false;
+let syncedLayersPromise=null;
+
 async function loadSyncedLayer(name){
-  if(syncedLayerBuffers.has(name))return syncedLayerBuffers.get(name);
-  const r=await fetch(syncedLayerFiles[name]); if(!r.ok)throw Error('Loop load failed');
-  const b=await ctx.decodeAudioData(await r.arrayBuffer()); syncedLayerBuffers.set(name,b); return b;
+  if(syncedLayerBuffers.has(name)) return syncedLayerBuffers.get(name);
+  const response=await fetch(syncedLayerFiles[name]);
+  if(!response.ok) throw new Error('Could not load '+syncedLayerFiles[name]);
+  const buffer=await ctx.decodeAudioData(await response.arrayBuffer());
+  syncedLayerBuffers.set(name,buffer);
+  return buffer;
 }
+
 async function ensureSyncedLayers(){
-  if(syncedLayersStarted)return;
-  if(syncedLayersPromise)return syncedLayersPromise;
+  if(syncedLayersStarted) return;
+  if(syncedLayersPromise) return syncedLayersPromise;
+
   syncedLayersPromise=(async()=>{
-    if(!init())throw Error('Audio unavailable');
-    if(ctx.state==='suspended')await ctx.resume();
-    const names=['shaker','cajon','choir'], bufs=await Promise.all(names.map(loadSyncedLayer));
-    const t=ctx.currentTime+.12;
+    if(!init()) throw new Error('Audio unavailable');
+    if(ctx.state==='suspended') await ctx.resume();
+
+    const names=['shaker','cajon','choir'];
+    const buffers=await Promise.all(names.map(loadSyncedLayer));
+
+    // Start all sources on exactly the same AudioContext timestamp.
+    const startTime=ctx.currentTime+0.10;
     names.forEach((name,i)=>{
-      const source=ctx.createBufferSource(), gain=ctx.createGain();
-      source.buffer=bufs[i]; source.loop=true; gain.gain.setValueAtTime(.0001,t);
-      source.connect(gain).connect(master); source.start(t);
+      const source=ctx.createBufferSource();
+      const gain=ctx.createGain();
+      source.buffer=buffers[i];
+      source.loop=true;
+      gain.gain.setValueAtTime(0.0001,startTime);
+      source.connect(gain);
+      gain.connect(master);
+      source.start(startTime);
       syncedLayerVoices.set(name,{source,gain,on:false});
     });
+
     syncedLayersStarted=true;
   })();
-  try{await syncedLayersPromise}finally{syncedLayersPromise=null}
+
+  try{
+    await syncedLayersPromise;
+  } finally {
+    syncedLayersPromise=null;
+  }
 }
+
 async function toggleSyncedLayer(name,button){
   await ensureSyncedLayers();
-  const v=syncedLayerVoices.get(name), now=ctx.currentTime; if(!v)return;
-  v.on=!v.on; v.gain.gain.cancelScheduledValues(now);
-  v.gain.gain.setValueAtTime(Math.max(.0001,v.gain.gain.value),now);
-  v.gain.gain.exponentialRampToValueAtTime(v.on?1:.0001,now+.06);
-  button.classList.toggle('active',v.on); button.setAttribute('aria-pressed',v.on?'true':'false');
+  const voice=syncedLayerVoices.get(name);
+  if(!voice) return;
+
+  const now=ctx.currentTime;
+  voice.on=!voice.on;
+
+  const current=Math.max(0.0001,voice.gain.gain.value);
+  voice.gain.gain.cancelScheduledValues(now);
+  voice.gain.gain.setValueAtTime(current,now);
+  voice.gain.gain.exponentialRampToValueAtTime(voice.on?1:0.0001,now+0.07);
+
+  button.classList.toggle('active',voice.on);
+  button.setAttribute('aria-pressed',voice.on?'true':'false');
 }
-document.querySelectorAll('.layerIcon[data-layer]').forEach(b=>b.addEventListener('pointerdown',e=>{
-  e.preventDefault();e.stopPropagation();toggleSyncedLayer(b.dataset.layer,b).catch(console.error);
-}));
+
+document.querySelectorAll('.layerIcon[data-layer]').forEach(button=>{
+  button.addEventListener('pointerdown',event=>{
+    event.preventDefault();
+    event.stopPropagation();
+    toggleSyncedLayer(button.dataset.layer,button).catch(err=>{
+      console.error('Layer loop error',err);
+    });
+  });
+});
+
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+})();
 
 </script>
 </body></html>

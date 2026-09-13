@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v56: gold handpan matched to gold logo/layer icons; based on v48 -->
+<!-- v58: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 
-/* v56 unified bright-gold visual treatment */
+/* v58 unified bright-gold visual treatment */
 .pan{
   background:
     radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
@@ -131,7 +131,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#fff0c1 !important}
 
 
-/* v56 — reference bronze-gold palette sampled from supplied handpan photo */
+/* v58 — reference bronze-gold palette sampled from supplied handpan photo */
 .pan{
   background:
     radial-gradient(circle at 31% 17%,rgba(255,224,153,.90) 0 5%,rgba(230,177,90,.44) 14%,transparent 31%),
@@ -193,7 +193,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#f2d6a5 !important}
 
 
-/* v56 — polished/high-contrast version of the v56 bronze handpan */
+/* v58 — polished/high-contrast version of the v58 bronze handpan */
 .pan{
   background:
     radial-gradient(ellipse at 31% 15%,rgba(255,241,190,.98) 0 3%,rgba(255,211,123,.72) 8%,rgba(214,151,70,.28) 19%,transparent 34%),
@@ -252,7 +252,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 }
 
 
-/* v56 — restore concave appearance to outer-note dimples (notes 1–9) */
+/* v58 — restore concave appearance to outer-note dimples (notes 1–9) */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 31% 27%,rgba(38,20,6,.72) 0 5%,rgba(67,37,11,.42) 18%,transparent 43%),
@@ -269,7 +269,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .layerIcon[data-layer] img{opacity:.50;filter:saturate(.72) brightness(.70);transition:.18s}
 .layerIcon[data-layer].active img{opacity:1;filter:brightness(1.14) saturate(1.05) drop-shadow(0 0 10px rgba(226,169,61,.48))}
 
-/* v56 — stronger concave cue for outer-note dimples without dulling the polished shell */
+/* v58 — stronger concave cue for outer-note dimples without dulling the polished shell */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 29% 25%,rgba(34,17,5,.78) 0 7%,rgba(69,38,11,.46) 18%,transparent 43%),
@@ -280,6 +280,11 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
     inset -6px -7px 11px rgba(250,204,132,.31),
     inset 0 0 0 1px rgba(244,201,135,.10) !important;
 }
+
+
+/* v58 — percussion icons 20% larger */
+.layerIcon{width:min(13.2vw,69.6px)!important;height:min(13.2vw,69.6px)!important;max-width:69.6px!important;max-height:69.6px!important;min-width:45.6px!important;min-height:45.6px!important}
+@media(max-width:520px){.layerIcon{width:13.8vw!important;height:13.8vw!important;min-width:43.2px!important;min-height:43.2px!important}}
 
 </style>
 </head>
@@ -299,7 +304,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 </div>
 
 
-<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="layerIcon topLeft" type="button" data-layer="shaker" aria-label="Shaker loop" aria-pressed="false"><img src="layer-shaker-icon.png" alt=""></button><button class="layerIcon topRight" type="button" data-layer="choir" aria-label="Choir loop" aria-pressed="false"><img src="layer-synth-icon.png" alt=""></button><button class="layerIcon bottomLeft" type="button" data-layer="cajon" aria-label="Cajón loop" aria-pressed="false"><img src="layer-cajon-icon.png" alt=""></button><button class="layerIcon bottomRight" type="button" aria-label="Vocal harmonies layer" disabled><img src="layer-vocals-icon.png" alt=""></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
+<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="layerIcon topLeft" type="button" data-layer="shaker" aria-label="Shaker loop" aria-pressed="false"><img src="layer-shaker-icon.png" alt=""></button><button class="layerIcon topRight" type="button" data-layer="tambourine" aria-label="Tambourine loop" aria-pressed="false"><img src="layer-synth-icon.png?v58" alt=""></button><button class="layerIcon bottomLeft" type="button" data-layer="cajon" aria-label="Cajón loop" aria-pressed="false"><img src="layer-cajon-icon.png" alt=""></button><button class="layerIcon bottomRight" type="button" data-layer="bongo" aria-label="Bongo loop" aria-pressed="false"><img src="layer-vocals-icon.png?v58" alt=""></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
 <div id="ambienceButtons" class="ambienceButtons" role="group" aria-label="Choose ambience">
 <button class="ambienceBtn" type="button" data-ambience="forest" aria-pressed="false"><img src="ambience-forest-icon.png" alt=""><span>Forest</span></button>
 <button class="ambienceBtn" type="button" data-ambience="beach" aria-pressed="false"><img src="ambience-beach-icon.png" alt=""><span>Beach</span></button>
@@ -442,14 +447,10 @@ function endSlide(e){if(!slidePointers.has(e.pointerId))return;slidePointers.del
 stage.addEventListener('pointerup',endSlide);stage.addEventListener('pointercancel',endSlide);stage.addEventListener('lostpointercapture',e=>slidePointers.delete(e.pointerId));
 document.addEventListener('pointerdown',()=>{loadRealSamples()},{once:true});
 
-// v56 — sample-accurate synchronised musical layers.
+// v58 — sample-accurate synchronised musical layers.
 // All three loops begin together and continue running silently when deselected,
 // so any layer can be brought in/out without losing phase.
-const syncedLayerFiles={
-  shaker:'loop-shaker.wav',
-  cajon:'loop-cajon.wav',
-  choir:'loop-choir.wav'
-};
+const syncedLayerFiles={shaker:'loop-shaker.wav',cajon:'loop-cajon.wav',tambourine:'loop-tambourine.wav',bongo:'loop-bongo.wav'};
 const syncedLayerBuffers=new Map();
 const syncedLayerVoices=new Map();
 let syncedLayersStarted=false;
@@ -472,7 +473,7 @@ async function ensureSyncedLayers(){
     if(!init()) throw new Error('Audio unavailable');
     if(ctx.state==='suspended') await ctx.resume();
 
-    const names=['shaker','cajon','choir'];
+    const names=['shaker','cajon','tambourine','bongo'];
     const buffers=await Promise.all(names.map(loadSyncedLayer));
 
     // Start all sources on exactly the same AudioContext timestamp.

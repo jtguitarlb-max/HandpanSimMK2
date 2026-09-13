@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v55: gold handpan matched to gold logo/layer icons; based on v48 -->
+<!-- v56: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 
-/* v55 unified bright-gold visual treatment */
+/* v56 unified bright-gold visual treatment */
 .pan{
   background:
     radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
@@ -131,7 +131,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#fff0c1 !important}
 
 
-/* v55 — reference bronze-gold palette sampled from supplied handpan photo */
+/* v56 — reference bronze-gold palette sampled from supplied handpan photo */
 .pan{
   background:
     radial-gradient(circle at 31% 17%,rgba(255,224,153,.90) 0 5%,rgba(230,177,90,.44) 14%,transparent 31%),
@@ -193,7 +193,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#f2d6a5 !important}
 
 
-/* v55 — polished/high-contrast version of the v55 bronze handpan */
+/* v56 — polished/high-contrast version of the v56 bronze handpan */
 .pan{
   background:
     radial-gradient(ellipse at 31% 15%,rgba(255,241,190,.98) 0 3%,rgba(255,211,123,.72) 8%,rgba(214,151,70,.28) 19%,transparent 34%),
@@ -252,7 +252,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 }
 
 
-/* v55 — restore concave appearance to outer-note dimples (notes 1–9) */
+/* v56 — restore concave appearance to outer-note dimples (notes 1–9) */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 31% 27%,rgba(38,20,6,.72) 0 5%,rgba(67,37,11,.42) 18%,transparent 43%),
@@ -269,7 +269,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .layerIcon[data-layer] img{opacity:.50;filter:saturate(.72) brightness(.70);transition:.18s}
 .layerIcon[data-layer].active img{opacity:1;filter:brightness(1.14) saturate(1.05) drop-shadow(0 0 10px rgba(226,169,61,.48))}
 
-/* v55 — stronger concave cue for outer-note dimples without dulling the polished shell */
+/* v56 — stronger concave cue for outer-note dimples without dulling the polished shell */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 29% 25%,rgba(34,17,5,.78) 0 7%,rgba(69,38,11,.46) 18%,transparent 43%),
@@ -442,7 +442,7 @@ function endSlide(e){if(!slidePointers.has(e.pointerId))return;slidePointers.del
 stage.addEventListener('pointerup',endSlide);stage.addEventListener('pointercancel',endSlide);stage.addEventListener('lostpointercapture',e=>slidePointers.delete(e.pointerId));
 document.addEventListener('pointerdown',()=>{loadRealSamples()},{once:true});
 
-// v55 — sample-accurate synchronised musical layers.
+// v56 — sample-accurate synchronised musical layers.
 // All three loops begin together and continue running silently when deselected,
 // so any layer can be brought in/out without losing phase.
 const syncedLayerFiles={
@@ -510,7 +510,7 @@ async function toggleSyncedLayer(name,button){
   const current=Math.max(0.0001,voice.gain.gain.value);
   voice.gain.gain.cancelScheduledValues(now);
   voice.gain.gain.setValueAtTime(current,now);
-  voice.gain.gain.exponentialRampToValueAtTime(voice.on?1:0.0001,now+0.07);
+  voice.gain.gain.exponentialRampToValueAtTime(voice.on?0.28:0.0001,now+0.07);
 
   button.classList.toggle('active',voice.on);
   button.setAttribute('aria-pressed',voice.on?'true':'false');

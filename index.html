@@ -10,7 +10,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Pocket Handpan</title>
-<!-- v58: gold handpan matched to gold logo/layer icons; based on v48 -->
+<!-- v60: gold handpan matched to gold logo/layer icons; based on v48 -->
 <style>
 :root{color-scheme:dark}
 *{box-sizing:border-box}
@@ -69,7 +69,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 @media(max-width:520px){.settings{width:100%}.settingsPanel{width:100%}.control{grid-template-columns:68px minmax(90px,1fr) 40px}}
 
 
-/* v58 unified bright-gold visual treatment */
+/* v60 unified bright-gold visual treatment */
 .pan{
   background:
     radial-gradient(circle at 31% 18%,rgba(255,248,196,.92) 0 4%,rgba(255,220,99,.48) 10%,transparent 29%),
@@ -131,7 +131,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#fff0c1 !important}
 
 
-/* v58 — reference bronze-gold palette sampled from supplied handpan photo */
+/* v60 — reference bronze-gold palette sampled from supplied handpan photo */
 .pan{
   background:
     radial-gradient(circle at 31% 17%,rgba(255,224,153,.90) 0 5%,rgba(230,177,90,.44) 14%,transparent 31%),
@@ -193,7 +193,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .label{color:#f2d6a5 !important}
 
 
-/* v58 — polished/high-contrast version of the v58 bronze handpan */
+/* v60 — polished/high-contrast version of the v60 bronze handpan */
 .pan{
   background:
     radial-gradient(ellipse at 31% 15%,rgba(255,241,190,.98) 0 3%,rgba(255,211,123,.72) 8%,rgba(214,151,70,.28) 19%,transparent 34%),
@@ -252,7 +252,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 }
 
 
-/* v58 — restore concave appearance to outer-note dimples (notes 1–9) */
+/* v60 — restore concave appearance to outer-note dimples (notes 1–9) */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 31% 27%,rgba(38,20,6,.72) 0 5%,rgba(67,37,11,.42) 18%,transparent 43%),
@@ -269,7 +269,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 .layerIcon[data-layer] img{opacity:.50;filter:saturate(.72) brightness(.70);transition:.18s}
 .layerIcon[data-layer].active img{opacity:1;filter:brightness(1.14) saturate(1.05) drop-shadow(0 0 10px rgba(226,169,61,.48))}
 
-/* v58 — stronger concave cue for outer-note dimples without dulling the polished shell */
+/* v60 — stronger concave cue for outer-note dimples without dulling the polished shell */
 .note:not(.ding)::before{
   background:
     radial-gradient(ellipse at 29% 25%,rgba(34,17,5,.78) 0 7%,rgba(69,38,11,.46) 18%,transparent 43%),
@@ -282,7 +282,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 }
 
 
-/* v58 — percussion icons 20% larger */
+/* v60 — percussion icons 20% larger */
 .layerIcon{width:min(13.2vw,69.6px)!important;height:min(13.2vw,69.6px)!important;max-width:69.6px!important;max-height:69.6px!important;min-width:45.6px!important;min-height:45.6px!important}
 @media(max-width:520px){.layerIcon{width:13.8vw!important;height:13.8vw!important;min-width:43.2px!important;min-height:43.2px!important}}
 
@@ -296,15 +296,15 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <summary>Settings</summary>
 <div class="settingsPanel">
 <div class="control toggleControl"><div class="toggleText"><label for="guides">Guidelines</label><small>Show playable note areas</small></div><label class="switch"><input id="guides" type="checkbox" checked><span class="sliderToggle"></span></label></div>
-<div class="control toggleControl"><div class="toggleText"><span>Labels</span><small>Numbers, note names, or off</small></div><div id="labelMode" class="segmented" role="group" aria-label="Note label mode"><button class="segmentBtn active" type="button" data-label-mode="numbers" aria-pressed="true">Numbers</button><button class="segmentBtn" type="button" data-label-mode="names" aria-pressed="false">Names</button><button class="segmentBtn" type="button" data-label-mode="off" aria-pressed="false">Off</button></div></div>
-<div class="control toggleControl"><div class="toggleText"><label for="backingTrack">Backing Track</label><small>Atmospheric D Kurd synth</small></div><label class="switch"><input id="backingTrack" type="checkbox"><span class="sliderToggle"></span></label></div>
-<div id="backingVolume" class="control ambienceVolume hidden" aria-hidden="true"><label for="backingLevel">Volume</label><input id="backingLevel" type="range" min="0" max="1" step=".01" value=".50"><output id="backingLevelOut">50%</output></div>
+<div class="control toggleControl"><div class="toggleText"><span>Labels</span><small>Numbers, notes, or off</small></div><div id="labelMode" class="segmented" role="group" aria-label="Note label mode"><button class="segmentBtn active" type="button" data-label-mode="numbers" aria-pressed="true">Numbers</button><button class="segmentBtn" type="button" data-label-mode="names" aria-pressed="false">Notes</button><button class="segmentBtn" type="button" data-label-mode="off" aria-pressed="false">Off</button></div></div>
+
+
 </div>
 </details>
 </div>
 
 
-<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="layerIcon topLeft" type="button" data-layer="shaker" aria-label="Shaker loop" aria-pressed="false"><img src="layer-shaker-icon.png" alt=""></button><button class="layerIcon topRight" type="button" data-layer="tambourine" aria-label="Tambourine loop" aria-pressed="false"><img src="layer-synth-icon.png?v58" alt=""></button><button class="layerIcon bottomLeft" type="button" data-layer="cajon" aria-label="Cajón loop" aria-pressed="false"><img src="layer-cajon-icon.png" alt=""></button><button class="layerIcon bottomRight" type="button" data-layer="bongo" aria-label="Bongo loop" aria-pressed="false"><img src="layer-vocals-icon.png?v58" alt=""></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
+<div id="stage" class="stage"><div id="pan" class="pan"></div><button id="shell" class="shellHit" type="button" aria-label="Handpan shell percussion"></button><button class="layerIcon topLeft" type="button" data-layer="shaker" aria-label="Shaker loop" aria-pressed="false"><img src="layer-shaker-icon.png" alt=""></button><button class="layerIcon topRight" type="button" data-layer="tambourine" aria-label="Tambourine loop" aria-pressed="false"><img src="layer-synth-icon.png?v60" alt=""></button><button class="layerIcon bottomLeft" type="button" data-layer="cajon" aria-label="Cajón loop" aria-pressed="false"><img src="layer-cajon-icon.png" alt=""></button><button class="layerIcon bottomRight" type="button" data-layer="bongo" aria-label="Bongo loop" aria-pressed="false"><img src="layer-vocals-icon.png?v60" alt=""></button><button class="note ding" type="button" data-note="D3" data-freq="146.832" style="left:50%;top:50%"><span class="zoneGuide"></span><span class="label">D3<small>Ding</small></span></button></div>
 <div id="ambienceButtons" class="ambienceButtons" role="group" aria-label="Choose ambience">
 <button class="ambienceBtn" type="button" data-ambience="forest" aria-pressed="false"><img src="ambience-forest-icon.png" alt=""><span>Forest</span></button>
 <button class="ambienceBtn" type="button" data-ambience="beach" aria-pressed="false"><img src="ambience-beach-icon.png" alt=""><span>Beach</span></button>
@@ -315,8 +315,7 @@ body{min-height:100dvh;padding:max(env(safe-area-inset-top),12px) 14px max(env(s
 <script>
 (()=>{
 const stage=document.getElementById('stage'),pan=document.getElementById('pan'),shell=document.getElementById('shell');const status={set textContent(_){}};
-const guides=document.getElementById('guides'),labelMode=document.getElementById('labelMode'),ambienceButtons=document.getElementById('ambienceButtons'),backingTrack=document.getElementById('backingTrack'),backingVolume=document.getElementById('backingVolume'),backingLevel=document.getElementById('backingLevel');
-const backingLevelOut=document.getElementById('backingLevelOut');
+const guides=document.getElementById('guides'),labelMode=document.getElementById('labelMode'),ambienceButtons=document.getElementById('ambienceButtons');
 const settingsMenu=document.getElementById('settingsMenu');
 document.addEventListener('pointerdown',e=>{if(settingsMenu.open&&!settingsMenu.contains(e.target))settingsMenu.open=false});
 const layoutOrder=[0,1,3,5,7,8,6,4,2];
@@ -324,7 +323,7 @@ const tuning={name:'D Kurd',count:10,ding:'D3',ascending:['A3','Bb3','C4','D4','
 function noteFreq(note){const m=note.match(/^([A-G])([b#]?)(-?\d+)$/);if(!m)return 440;const semis={C:0,D:2,E:4,F:5,G:7,A:9,B:11};const midi=semis[m[1]]+(m[2]==='#'?1:m[2]==='b'?-1:0)+(parseInt(m[3],10)+1)*12;return 440*Math.pow(2,(midi-69)/12)}
 function currentTuning(){return tuning}
 function currentOuterNotes(){return layoutOrder.map(i=>tuning.ascending[i])}
-let ctx,master,reverb,wet,ambienceBus,currentAmbient=null,ambientLoadToken=0,backingBus,currentBacking=null,backingBuffer=null,backingLoadToken=0;
+let ctx,master,reverb,wet,ambienceBus,currentAmbient=null,ambientLoadToken=0;
 const realSampleBuffers=new Map(), realSampleTurn=new Map();
 const realSampleNotes=['D3','A3','Bb3','C4','D4','E4','F4','G4','A4','C5'];
 async function loadRealSamples(){if(!init())return;const shellKeys=['Knuckle_2','Knuckle_3','Slap_1','Slap_2','Slap_3'];await Promise.all(realSampleNotes.flatMap(note=>[1,2].map(async take=>{const key=note+'_'+take;if(realSampleBuffers.has(key))return;const r=await fetch(key+'.wav');if(r.ok)realSampleBuffers.set(key,await ctx.decodeAudioData(await r.arrayBuffer()))})).concat(shellKeys.map(async key=>{if(realSampleBuffers.has(key))return;const r=await fetch(key+'.wav');if(r.ok)realSampleBuffers.set(key,await ctx.decodeAudioData(await r.arrayBuffer()))}))).catch(()=>{});}
@@ -347,7 +346,7 @@ function positionNotes(){outer.forEach((b,i)=>{const a=(baseStart+i*40)*Math.PI/
 positionNotes();
 function syncGuides(){stage.classList.toggle('showGuides',guides.checked)}guides.addEventListener('change',syncGuides);syncGuides();
 function setLabelMode(mode){currentLabelMode=mode;labelMode.querySelectorAll('[data-label-mode]').forEach(b=>{const on=b.dataset.labelMode===mode;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on?'true':'false')});renderAllLabels()}labelMode.addEventListener('click',e=>{const b=e.target.closest('[data-label-mode]');if(b)setLabelMode(b.dataset.labelMode)});setLabelMode('numbers');
-function init(){if(ctx){if(ctx.state==='suspended')ctx.resume();return true}const AC=window.AudioContext||window.webkitAudioContext;if(!AC){status.textContent='Audio is not supported on this device.';return false}ctx=new AC({latencyHint:'interactive'});master=ctx.createGain();master.gain.value=.8;master.connect(ctx.destination);reverb=ctx.createConvolver();wet=ctx.createGain();wet.gain.value=.035;const len=Math.floor(ctx.sampleRate*1.3),imp=ctx.createBuffer(2,len,ctx.sampleRate);for(let c=0;c<2;c++){const d=imp.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,5)*.18}reverb.buffer=imp;reverb.connect(wet).connect(master);ambienceBus=ctx.createGain();ambienceBus.gain.value=.10;ambienceBus.connect(ctx.destination);backingBus=ctx.createGain();backingBus.gain.value=(+backingLevel.value)*.35;backingBus.connect(ctx.destination);
+function init(){if(ctx){if(ctx.state==='suspended')ctx.resume();return true}const AC=window.AudioContext||window.webkitAudioContext;if(!AC){status.textContent='Audio is not supported on this device.';return false}ctx=new AC({latencyHint:'interactive'});master=ctx.createGain();master.gain.value=.8;master.connect(ctx.destination);reverb=ctx.createConvolver();wet=ctx.createGain();wet.gain.value=.035;const len=Math.floor(ctx.sampleRate*1.3),imp=ctx.createBuffer(2,len,ctx.sampleRate);for(let c=0;c<2;c++){const d=imp.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,5)*.18}reverb.buffer=imp;reverb.connect(wet).connect(master);ambienceBus=ctx.createGain();ambienceBus.gain.value=.10;ambienceBus.connect(ctx.destination);
 for(let i=0;i<POOL;i++){const f=ctx.createBiquadFilter(),a=ctx.createGain();f.type='lowpass';f.Q.value=.32;a.gain.value=0;f.connect(a);a.connect(master);a.connect(reverb);voices.push({f,a,busyUntil:0})}return true}
 function getVoice(now){let v=voices.find(x=>x.busyUntil<=now+.002);return v||voices.reduce((a,b)=>a.busyUntil<b.busyUntil?a:b)}
 function renderSample(freq,isDing,zone){const sr=ctx.sampleRate,dur=isDing?5.3:4.8,N=Math.floor(sr*dur),buf=ctx.createBuffer(2,N,sr),L=buf.getChannelData(0),R=buf.getChannelData(1);let m;if(isDing&&zone==='centre')m=[[1,1,4.5],[2.01,.19,3],[2.96,.09,2],[4.09,.04,1.3],[5.2,.018,.85]];else if(isDing)m=[[1,.8,3.8],[2.01,.3,2.7],[2.97,.18,1.9],[4.11,.1,1.25],[5.24,.045,.8]];else if(zone==='centre')m=[[1,.94,4],[2.005,.19,2.7],[2.93,.085,1.8],[4.06,.04,1.15],[5.17,.017,.72]];else m=[[1,.77,3.45],[2.01,.3,2.4],[2.94,.18,1.65],[4.08,.1,1.08],[5.31,.045,.68]];for(let i=0;i<N;i++){const t=i/sr;let l=0,r=0;for(let j=0;j<m.length;j++){const q=m[j],env=Math.exp(-t/q[2])*(1-Math.exp(-t*(zone==='centre'?180:300))),ph=2*Math.PI*freq*q[0]*t+j*.67;l+=Math.sin(ph)*q[1]*env;r+=Math.sin(ph+j*.018)*q[1]*env}const strike=Math.exp(-t*(zone==='centre'?72:55)),noise=(Math.random()*2-1)*strike*(zone==='centre'?.055:.13);L[i]=Math.tanh((l+noise)*.74);R[i]=Math.tanh((r+noise*.9)*.74)}return buf}
@@ -422,21 +421,6 @@ ambienceButtons.addEventListener('pointerdown',e=>{
   e.preventDefault();
   startAmbient(b.dataset.ambience);
 });
-
-async function loadBacking(){
-  if(backingBuffer)return backingBuffer;if(!init())throw new Error('audio unavailable');
-  const res=await fetch('backing-d-kurd-atmosphere.mp3');if(!res.ok)throw new Error('backing load failed');
-  backingBuffer=await ctx.decodeAudioData(await res.arrayBuffer());return backingBuffer
-}
-function stopBacking(fade=.65){if(!currentBacking||!ctx)return;const old=currentBacking;currentBacking=null;const now=ctx.currentTime;old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(Math.max(.0001,old.gain.gain.value),now);old.gain.gain.exponentialRampToValueAtTime(.0001,now+fade);setTimeout(()=>{try{old.source.stop()}catch(e){}},Math.ceil((fade+.08)*1000))}
-async function startBacking(){
-  if(!init())return;const token=++backingLoadToken;status.textContent='Loading D Kurd backing track…';
-  try{const buf=await loadBacking();if(token!==backingLoadToken||!backingTrack.checked)return;if(ctx.state==='suspended')await ctx.resume();const now=ctx.currentTime,source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=buf;source.loop=true;gain.gain.setValueAtTime(.0001,now);source.connect(gain).connect(backingBus);source.start(now);const old=currentBacking;currentBacking={source,gain};gain.gain.exponentialRampToValueAtTime(1,now+.9);if(old){old.gain.gain.cancelScheduledValues(now);old.gain.gain.setValueAtTime(Math.max(.0001,old.gain.gain.value),now);old.gain.gain.exponentialRampToValueAtTime(.0001,now+.8);setTimeout(()=>{try{old.source.stop()}catch(e){}},900)}status.textContent='D Kurd backing track';
-  }catch(e){if(token===backingLoadToken){backingTrack.checked=false;syncBackingUI();status.textContent='Could not load backing track'}}
-}
-function syncBackingUI(){const on=backingTrack.checked;backingVolume.classList.toggle('hidden',!on);backingVolume.setAttribute('aria-hidden',on?'false':'true');if(on)startBacking();else{backingLoadToken++;stopBacking()}}
-backingTrack.addEventListener('change',syncBackingUI);
-backingLevel.addEventListener('input',()=>{const v=+backingLevel.value;backingLevelOut.value=Math.round(v*100)+'%';if(backingBus&&ctx){backingBus.gain.cancelScheduledValues(ctx.currentTime);backingBus.gain.setTargetAtTime(v*.35,ctx.currentTime,.04)}});
 const slidePointers=new Map();
 function noteAtPoint(x,y){const el=document.elementFromPoint(x,y);return el?el.closest('.note'):null}
 function displayNote(n){if(!n)return'';return currentLabelMode==='numbers'?(n.dataset.number||n.dataset.note):n.dataset.note}
@@ -447,10 +431,10 @@ function endSlide(e){if(!slidePointers.has(e.pointerId))return;slidePointers.del
 stage.addEventListener('pointerup',endSlide);stage.addEventListener('pointercancel',endSlide);stage.addEventListener('lostpointercapture',e=>slidePointers.delete(e.pointerId));
 document.addEventListener('pointerdown',()=>{loadRealSamples()},{once:true});
 
-// v58 — sample-accurate synchronised musical layers.
+// v60 — sample-accurate synchronised musical layers.
 // All three loops begin together and continue running silently when deselected,
 // so any layer can be brought in/out without losing phase.
-const syncedLayerFiles={shaker:'loop-shaker.wav',cajon:'loop-cajon.wav',tambourine:'loop-tambourine.wav',bongo:'loop-bongo.wav'};
+const syncedLayerFiles={shaker:'loop-shaker-v60.wav',cajon:'loop-cajon.wav',tambourine:'loop-tambourine.wav',bongo:'loop-bongo.wav'};
 const syncedLayerBuffers=new Map();
 const syncedLayerVoices=new Map();
 let syncedLayersStarted=false;
@@ -527,7 +511,7 @@ document.querySelectorAll('.layerIcon[data-layer]').forEach(button=>{
   });
 });
 
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js?v=60').catch(()=>{}));
 })();
 
 </script>

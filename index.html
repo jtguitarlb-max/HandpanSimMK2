@@ -406,12 +406,29 @@ for(let i=0;i<POOL;i++){const f=ctx.createBiquadFilter(),a=ctx.createGain();f.ty
 async function ensureAudioReady(){
   if(!init())return false;
   try{
-    if(ctx.state==='suspended')await ctx.resume();
+    // iOS Safari may use "interrupted" as well as "suspended". Calling
+    // resume for every non-running state is safe and is required after calls,
+    // Siri, Control Centre, device locking, or opening an installed PWA.
+    if(ctx.state!=='running')await ctx.resume();
     if(ctx.state!=='running'){showAudioPrompt();return false}
     const b=ctx.createBuffer(1,1,ctx.sampleRate),s=ctx.createBufferSource();s.buffer=b;s.connect(ctx.destination);s.start(0);hideAudioPrompt();return true;
   }catch(e){showAudioPrompt();return false}
 }
-audioPrompt.addEventListener('pointerdown',async e=>{e.preventDefault();await ensureAudioReady()});
+let lastAudioUnlock=0;
+function handleAudioUnlock(e){
+  if(e&&e.cancelable)e.preventDefault();
+  const now=Date.now();if(now-lastAudioUnlock<250)return;lastAudioUnlock=now;
+  // Start a silent buffer synchronously while Safari still considers this a
+  // direct user gesture, then resume the context and verify its state.
+  if(init()){
+    try{const b=ctx.createBuffer(1,1,ctx.sampleRate),s=ctx.createBufferSource();s.buffer=b;s.connect(ctx.destination);s.start(0)}catch(_){}
+    const resumed=ctx.state==='running'?Promise.resolve():ctx.resume();
+    Promise.resolve(resumed).then(()=>{if(ctx.state==='running')hideAudioPrompt();else showAudioPrompt()}).catch(showAudioPrompt);
+  }
+}
+audioPrompt.addEventListener('touchend',handleAudioUnlock,{passive:false});
+audioPrompt.addEventListener('pointerup',handleAudioUnlock);
+audioPrompt.addEventListener('click',handleAudioUnlock);
 function getVoice(now){let v=voices.find(x=>x.busyUntil<=now+.002);return v||voices.reduce((a,b)=>a.busyUntil<b.busyUntil?a:b)}
 function renderSample(freq,isDing,zone){const sr=ctx.sampleRate,dur=isDing?5.3:4.8,N=Math.floor(sr*dur),buf=ctx.createBuffer(2,N,sr),L=buf.getChannelData(0),R=buf.getChannelData(1);let m;if(isDing&&zone==='centre')m=[[1,1,4.5],[2.01,.19,3],[2.96,.09,2],[4.09,.04,1.3],[5.2,.018,.85]];else if(isDing)m=[[1,.8,3.8],[2.01,.3,2.7],[2.97,.18,1.9],[4.11,.1,1.25],[5.24,.045,.8]];else if(zone==='centre')m=[[1,.94,4],[2.005,.19,2.7],[2.93,.085,1.8],[4.06,.04,1.15],[5.17,.017,.72]];else m=[[1,.77,3.45],[2.01,.3,2.4],[2.94,.18,1.65],[4.08,.1,1.08],[5.31,.045,.68]];for(let i=0;i<N;i++){const t=i/sr;let l=0,r=0;for(let j=0;j<m.length;j++){const q=m[j],env=Math.exp(-t/q[2])*(1-Math.exp(-t*(zone==='centre'?180:300))),ph=2*Math.PI*freq*q[0]*t+j*.67;l+=Math.sin(ph)*q[1]*env;r+=Math.sin(ph+j*.018)*q[1]*env}const strike=Math.exp(-t*(zone==='centre'?72:55)),noise=(Math.random()*2-1)*strike*(zone==='centre'?.055:.13);L[i]=Math.tanh((l+noise)*.74);R[i]=Math.tanh((r+noise*.9)*.74)}return buf}
 function sample(name,freq,ding,zone){const k=name+'-'+zone;if(!bank.has(k))bank.set(k,renderSample(freq,ding,zone));return bank.get(k)}
@@ -574,7 +591,7 @@ document.querySelectorAll('.layerIcon[data-layer]').forEach(button=>{
   });
 });
 
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js?v=66').catch(()=>{}));
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js?v=67').catch(()=>{}));
 })();
 
 </script>
